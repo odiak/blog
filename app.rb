@@ -18,7 +18,7 @@ configure do
   use Rack::Session::Cookie,
     key: "rack.session",
     expire_after: SESSION_EXPIRE_AFTER,
-    secret: SESSION_SECRET,
+    secret: SESSION_SECRET
   use Rack::Csrf, raise: true
 end
 
