@@ -1,0 +1,6 @@
+.git
+/.bundle
+/vendor/bundle
+/db/*.sqlite3
+/setting.rb
+.DS_Store

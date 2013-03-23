@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %meta(charset="utf-8")
+    %title= title
+    %link(rel="stylesheet" type="text/css" href="/css/style.css")
+    %script(src="http://odiak.net/lib/jquery/jquery.js")
+    %script(src="/js/script.js")
+  %body
+    #wrapper
+      %h1
+        %a(href="/")= site_name
+      #nav
+        %ul
+          %li
+            %a(href="/about") About This Blog
+      #description= site_description
+      #content
+        = yield
+      #footer
+        %p.copyright= copyright
+    - if authorized?
+      %script(src="/js/admin.js")

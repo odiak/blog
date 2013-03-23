@@ -1,0 +1,24 @@
+%form.post-form(method="POST" action="#{@action}")
+  != csrf_tag
+  %div
+    %label(for="title") title
+    %br
+    %input(type="text" name="title" value="#{@post.title}" autofocus)
+  %div
+    %label(for="body") body
+    %br
+    %textarea(name="body")= @post.body
+  %div
+    - if @post.new_record?
+      %input(type="submit" value="Post")
+    - else
+      %input(type="submit" value="Update")
+    &nbsp;
+    %input(type="button" value="Preview" class="preview-button")
+
+- unless @post.new_record?
+  %form.delete-form(method="POST" action="/posts/#{@post.id}/delete")
+    != csrf_tag
+    %input(type="submit" value="Delete Post" class="delete-button")
+  %p
+    %a(href="/posts/#{@post.id}") &lt; Back to the post

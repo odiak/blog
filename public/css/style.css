@@ -1,0 +1,285 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  margin: 0 auto;
+  padding: 0;
+  width: 500px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #444;
+}
+
+#wrapper > h1 {
+  margin: 30px 0 25px 0;
+  padding: 0;
+  text-align: center;
+  font-weight: normal;
+  font-size: 40px;
+}
+
+#wrapper > h1 > a:link,
+#wrapper > h1 > a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+#wrapper > h1 > a:hover {
+  text-decoration: underline;
+}
+
+#nav {
+  margin: 25px 0;
+  padding: 5px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background: #f7f7f7;
+}
+
+#nav > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+#nav > ul > li {
+  padding: 0 10px;
+  display: inline;
+}
+
+#nav > ul > li > a:link,
+#nav > ul > li > a:visited {
+  color: #888;
+  text-decoration: none;
+}
+
+#nav > ul > li > a:hover {
+  color: #555;
+  text-decoration: underline;
+}
+
+#description {
+  margin: 25px 0;
+  padding: 0;
+  text-align: center;
+  font-size: 15px;
+  color: #555;
+}
+
+#content {
+  margin: 0;
+  padding: 0;
+  margin-top: 50px;
+}
+
+.post {
+  margin: 70px 0;
+  padding: 0;
+}
+
+.post a:link,
+.post a:visited {
+  color: #03e;
+  text-decoration: none;
+}
+
+.post a:hover {
+  text-decoration: underline;
+}
+
+#content h2,
+.post-title {
+  margin: 20px 0 5px 0;
+  padding: 0;
+  text-align: center;
+  font-weight: normal;
+  font-size: 22px;
+}
+
+.post-title > a:link,
+.post-title > a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-title > a:hover {
+  text-decoration: underline;
+}
+
+.post-date {
+  margin: 5px 0 30px 0;
+  text-align: center;
+}
+
+.post-content {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
+.post-content pre {
+	padding: 8px;
+	background-color: #f9f9f9;
+	border: 1px solid #bbb;
+	color: #444;
+}
+
+.post-content code {
+	font-family: Monospace;
+}
+
+.post-content pre code {
+	width: 100% !important;
+	max-width: 100% !important;
+	overflow: auto !important;
+	white-space: -moz-pre-wrap; /* Mozilla */
+	white-space: -pre-wrap;     /* Opera 4-6 */
+	white-space: -o-pre-wrap;   /* Opera 7 */
+	white-space: pre-wrap;      /* CSS3 */
+	word-wrap: break-word;      /* IE 5.5+ */
+}
+
+#page-nav {
+  display: block;
+  font-size: 18px;
+}
+
+#page-nav a:link,
+#page-nav a:visited {
+  text-decoration: none;
+  color: #777;
+}
+
+#page-nav a:hover {
+  text-decoration: underline;
+  color: #444;
+}
+
+#page-nav .previous {
+  float: left;
+  display: block;
+}
+
+#page-nav .next {
+  float: right;
+  display: block;
+}
+
+#page-nav:after {
+  display: block;
+  clear: both;
+  height: 0px;
+  visibility: hidden;
+  content: ".";
+}
+
+#footer {
+  margin: 0;
+  margin-top: 60px;
+  padding: 10px 0;
+  text-align: center;
+  border-top: 1px solid #aaa;
+}
+
+.copyright {
+  font-size: 15px;
+}
+
+.post-form,
+.delete-form {
+  margin: 30px 0;
+}
+
+.post-form > div {
+  margin: 15px 0;
+}
+
+.post-form label {
+  margin: 0;
+  font-size: 18px;
+}
+
+.post-form input[type=text],
+.post-form textarea {
+  margin: 5px 0;
+  padding: 5px;
+  width: 100%;
+  font-size: 15px;
+  border: 1px solid #777;
+  outline: 0;
+}
+
+.post-form input[type=text]:focus,
+.post-form textarea:focus {
+  border-color: #222;
+  background: #f5f5f5;
+}
+
+.post-form input[type=text] {
+  
+}
+
+.post-form textarea {
+  max-width: 100%;
+  height: 200px;
+}
+
+#post-form input[type=submit] {
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+#content > h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: normal;
+}
+
+.invalid {
+  color: #f00;
+  text-align: center;
+}
+
+#auth-form {
+  text-align: center;
+}
+
+#auth-form input {
+  font-size: 16px;
+}
+
+.center {
+  text-align: center;
+}
+
+
+.admin {
+  padding: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  font-family: sans-serif;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: #fff;
+  line-height: 95%;
+}
+
+.admin > div {
+  margin: 5px 5px 0 0;
+  padding: 4px;
+  background: #999;
+  display: inline-block;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.admin > div:hover {
+  background: #aaa;
+}
+
+.admin > div:active {
+  background: #888;
+}
