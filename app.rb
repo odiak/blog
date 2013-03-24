@@ -22,9 +22,7 @@ configure do
   use Rack::Csrf, raise: true
 end
 
-def authorized?
-  return !!session[:authorized]
-end
+PRODUCTION = production?
 
 helpers do
   def format_date(t)
@@ -63,8 +61,12 @@ helpers do
   end
   
   def production?
-    return ENV["RACK_ENV"] == "production"
+    return PRODUCTION
   end
+end
+
+def authorized?
+  return !!session[:authorized]
 end
 
 def authorize!
