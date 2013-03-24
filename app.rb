@@ -61,6 +61,10 @@ helpers do
   def csrf_tag
     return Rack::Csrf.csrf_tag(env)
   end
+  
+  def production?
+    return ENV["RACK_ENV"] == "production"
+  end
 end
 
 def authorize!

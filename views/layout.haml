@@ -6,6 +6,10 @@
     %link(rel="stylesheet" type="text/css" href="/css/style.css")
     %script(src="http://odiak.net/lib/jquery/jquery.js")
     %script(src="/js/script.js")
+    - if production?
+      %script(src="/js/ga.js")
+    - if authorized?
+      %script(src="/js/admin.js")
   %body
     #wrapper
       %h1
@@ -19,5 +23,3 @@
         = yield
       #footer
         %p.copyright= copyright
-    - if authorized?
-      %script(src="/js/admin.js")
