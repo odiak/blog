@@ -12,6 +12,7 @@ class Post < ActiveRecord::Base
 end
 
 configure do
+  set :app_file, __FILE__
   set :database, "sqlite3:///db/blog.sqlite3"
   set :haml, format: :html5
   disable :session
@@ -20,6 +21,7 @@ configure do
     expire_after: SESSION_EXPIRE_AFTER,
     secret: SESSION_SECRET
   use Rack::Csrf, raise: true
+  mime_type :atom, "application/atom+xml"
 end
 
 PRODUCTION = production?
@@ -183,6 +185,12 @@ post "/authorize" do
   else
     redirect "/authorize?failed=1"
   end
+end
+
+get "/feed" do
+  @posts = Post.order("created_at DESC").limit(100)
+  content_type :atom
+  haml :feed, layout: false, format: :xhtml
 end
 
 get "/about" do
