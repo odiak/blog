@@ -13,6 +13,9 @@ SITE_NAME = "My Blog"
 # Site Description
 SITE_DESCRIPTION = "This is My Blog."
 
+# Author Name
+AUTHOR_NAME = "John"
+
 # Copyright Statement
 COPYRIGHT = "(C) 2013 blog.example.com"
 

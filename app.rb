@@ -24,28 +24,14 @@ configure do
   mime_type :atom, "application/atom+xml"
 end
 
-PRODUCTION = production?
-
 helpers do
   def format_date(t)
     return t.strftime("%Y-%m-%d %H:%M:%S")
   end
   
-  def site_name
-    return SITE_NAME
-  end
-  
-  def site_description
-    return SITE_DESCRIPTION
-  end
-  
-  def copyright
-    return COPYRIGHT
-  end
-  
   def title
-    return "#{@title} - #{site_name}" if @title
-    return site_name
+    return "#{@title} - #{SITE_NAME}" if @title
+    return SITE_NAME
   end
   
   def get_posts
@@ -63,7 +49,11 @@ helpers do
   end
   
   def production?
-    return PRODUCTION
+    return Sinatra::Application.production?
+  end
+  
+  def last_updated
+    return Post.order("updated_at DESC").first.updated_at
   end
 end
 

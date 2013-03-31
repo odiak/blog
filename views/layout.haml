@@ -15,13 +15,13 @@
   %body
     #wrapper
       %h1
-        %a(href="/")= site_name
+        %a(href="/")= SITE_NAME
       #nav
         %ul
           %li
             %a(href="/about") About This Blog
-      #description= site_description
+      #description= SITE_DESCRIPTION
       #content
         = yield
       #footer
-        %p.copyright= copyright
+        %p.copyright= COPYRIGHT
