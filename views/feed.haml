@@ -2,7 +2,7 @@
 %feed(version="0.3" xmlns="http://www.w3.org/2005/Atom")
   %title= SITE_NAME
   %subtitle= SITE_DESCRIPTION
-  %updated= last_updated
+  %updated= last_updated.getutc.iso8601
   %link(rel="alternate" type="text/html" href="http://blog.odiak.net/")
   %link(rel="self" type="application/atom+xml" href="http://blog.odiak.net/feed")
   %author
