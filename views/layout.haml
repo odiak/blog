@@ -2,25 +2,22 @@
 %html
   %head
     %meta(charset="utf-8")
-    %title= title
+    %title #{@title && @title + " - "}odiak's blog
     %link(rel="alternate" type="application/atom+xml" href="/feed")
     %link(rel="stylesheet" href="/css/style.css")
-    %script(src="http://odiak.net/lib/jquery/jquery.min.js")
+    %script(src="/js/zepto.min.js")
     %script(src="/js/script.js")
     - if production?
       %script(src="/js/ga.js")
-    - if authorized?
-      %script(src="/js/admin.js")
   %body
     #wrapper
       %h1
-        %a(href="/")= SITE_NAME
+        %a(href="/") odiak's blog
       #nav
         %ul
           %li
-            %a(href="/about") About This Blog
-      #description= SITE_DESCRIPTION
+            %a(href="http://odiak.net") About me
       #content
         = yield
       #footer
-        %p.copyright= COPYRIGHT
+        %p.copyright (C) 2013 odiak.net

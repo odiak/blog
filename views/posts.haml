@@ -1,22 +1,6 @@
-- get_posts.each do |post|
-  .post
-    %h2.post-title
+#posts
+  - @posts.each do |post|
+    .post
+      %span.post_date= format_date post.created_at
+      &nbsp;
       %a(href="/posts/#{post.id}")= post.title
-    .post-date= format_date post.created_at
-    .post-content= markdown post.body
-
-#page-nav
-  - unless single_post?
-    - if @previous_page
-      %p.previous
-        %a(href="/page/#{@previous_page}") &laquo; Older Posts
-    - if @next_page
-      %p.next
-        %a(href="/page/#{@next_page}") Newer Posts &raquo;
-  - else
-    - if @previous_post
-      %p.previous
-        %a(href="/posts/#{@previous_post.id}") &laquo; Previous Post
-    - if @next_post
-      %p.next
-        %a(href="/posts/#{@next_post.id}") Next Post &raquo;

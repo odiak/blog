@@ -1,0 +1,4 @@
+#post
+  .post_title= @post.title
+  .post_date= format_datetime @post.created_at
+  .post_body= markdown @post.body

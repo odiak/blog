@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 # coding: utf-8
 
-require "rubygems"
 require "bundler"
 Bundler.require
 
@@ -26,32 +25,21 @@ end
 
 helpers do
   def format_date(t)
+    return t.strftime("%Y-%m-%d")
+  end
+
+  def format_datetime(t)
     return t.strftime("%Y-%m-%d %H:%M:%S")
   end
-  
-  def title
-    return "#{@title} - #{SITE_NAME}" if @title
-    return SITE_NAME
-  end
-  
-  def get_posts
-    return @posts if @posts
-    return [@post] if @post
-    return []
-  end
-  
-  def single_post?
-    return !!@post
-  end
-  
+
   def csrf_tag
     return Rack::Csrf.csrf_tag(env)
   end
-  
+
   def production?
     return Sinatra::Application.production?
   end
-  
+
   def last_updated
     return Post.order("updated_at DESC").first.updated_at
   end
@@ -69,29 +57,11 @@ def authorize!
 end
 
 def valid_password?(password)
-  return Digest::MD5.hexdigest(password) == PASSWORD
+  return Digest::MD5.hexdigest(password) == PASSWORD_DIGEST
 end
 
 get "/" do
-  @page = 1
-  @posts = Post.order("created_at DESC").limit(POSTS_PER_PAGE)
-  @previous_page = 2 if Post.count > POSTS_PER_PAGE
-  haml :posts
-end
-
-get "/page/:page" do
-  halt 404 unless params[:page] =~ /^\d+$/
-  page = params[:page].to_i
-  halt 404 if page < 1
-  redirect "/" if page == 1
-  @posts = Post.all(
-    order: "created_at DESC",
-    offset: (page - 1) * POSTS_PER_PAGE,
-    limit: POSTS_PER_PAGE
-  )
-  halt 404 if @posts.empty?
-  @next_page = page - 1 if page > 1
-  @previous_page = page + 1 if Post.count > page * POSTS_PER_PAGE
+  @posts = Post.order(created_at: :desc).all
   haml :posts
 end
 
@@ -105,7 +75,6 @@ end
 
 post "/posts/new" do
   authorize!
-  p params
   post = Post.create(title: params[:title], body: params[:body])
   redirect "/posts/#{post.id}"
 end
@@ -115,9 +84,9 @@ post "/posts/preview" do
   @post = Post.new(
     title: params[:title],
     body: params[:body],
-    created_at: Time.now
+    created_at: DateTime.now
   )
-  haml :posts
+  haml :post
 end
 
 get "/posts/:id" do
@@ -126,7 +95,7 @@ get "/posts/:id" do
   @title = @post.title
   @next_post = Post.order("created_at").where("created_at > ?", @post.created_at).first
   @previous_post = Post.order("created_at desc").where("created_at < ?", @post.created_at).first
-  haml :posts
+  haml :post
 end
 
 get "/posts/:id/edit" do
@@ -181,10 +150,6 @@ get "/feed" do
   @posts = Post.order("created_at DESC").limit(100)
   content_type :atom
   haml :feed, layout: false, format: :xhtml
-end
-
-get "/about" do
-  haml :about
 end
 
 not_found do
