@@ -1,6 +1,6 @@
-.git
 /.bundle
 /vendor/bundle
+/vendor/bin
 /db/*.sqlite3
 /setting.rb
 .DS_Store
