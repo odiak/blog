@@ -1,6 +1,6 @@
 #posts
   - @posts.each do |post|
     .post
-      %a(href="/posts/#{post.id}")= post.title
-      &nbsp;-&nbsp;
-      %span.post_date= format_datetime post.created_at
+      a(href="/posts/#{post.id}")= post.title
+      | &nbsp;-&nbsp;
+      span.post_date= format_datetime post.created_at

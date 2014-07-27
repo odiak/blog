@@ -13,7 +13,6 @@ end
 configure do
   set :app_file, __FILE__
   set :database, "sqlite3:///db/blog.sqlite3"
-  set :haml, format: :html5
   disable :session
   use Rack::Session::Cookie,
     key: "rack.session",
@@ -62,7 +61,7 @@ end
 
 get "/" do
   @posts = Post.order(created_at: :desc).all
-  haml :posts
+  slim :posts
 end
 
 get "/posts/new" do
@@ -70,7 +69,7 @@ get "/posts/new" do
   @title = "New Post"
   @action = ""
   @post = Post.new
-  haml :post_form
+  slim :post_form
 end
 
 post "/posts/new" do
@@ -86,7 +85,7 @@ post "/posts/preview" do
     body: params[:body],
     created_at: DateTime.now
   )
-  haml :post
+  slim :post
 end
 
 get "/posts/:id" do
@@ -95,7 +94,7 @@ get "/posts/:id" do
   @title = @post.title
   @next_post = Post.order("created_at").where("created_at > ?", @post.created_at).first
   @previous_post = Post.order("created_at desc").where("created_at < ?", @post.created_at).first
-  haml :post
+  slim :post
 end
 
 get "/posts/:id/edit" do
@@ -104,7 +103,7 @@ get "/posts/:id/edit" do
   @action = "/posts/#{params[:id]}/update"
   @post = Post.find_by_id(params[:id])
   halt 404 unless @post
-  haml :post_form
+  slim :post_form
 end
 
 post "/posts/:id/update" do
@@ -130,7 +129,7 @@ end
 
 get "/authorize" do
   @failed = params[:failed]
-  haml :authorize
+  slim :authorize
 end
 
 post "/authorize" do
@@ -149,11 +148,11 @@ end
 get "/feed" do
   @posts = Post.order("created_at DESC").limit(100)
   content_type :atom
-  haml :feed, layout: false, format: :xhtml
+  slim :feed, layout: false, format: :xhtml
 end
 
 not_found do
-  haml :not_found
+  slim :not_found
 end
 
 error Rack::Csrf::InvalidCsrfToken do
