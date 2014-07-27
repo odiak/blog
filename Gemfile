@@ -8,7 +8,6 @@ gem "haml"
 gem "rake"
 gem "redcarpet"
 gem "rack_csrf", require: "rack/csrf"
-gem "thin"
 
 group :development do
   gem "shotgun"
