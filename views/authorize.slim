@@ -2,6 +2,6 @@ h2 Enter Password!
 - if @failed
   p.invalid invalid password!
 form#auth-form(method="POST")
-  = csrf_tag
+  == csrf_tag
   input(type="password" name="password" autofocus)
   input(type="submit" value="Go")
