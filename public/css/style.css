@@ -2,14 +2,16 @@ body {
   margin: 0;
   padding: 0;
   font-size: 16px;
+  font-family: Verdana, sans-serif;
+  color: #444;
 }
 
 #wrapper {
   margin: 0 auto;
-  padding: 0;
-  width: 500px;
-  font-family: Helvetica, Arial, sans-serif;
-  color: #444;
+  padding: 0 10px;
+  max-width: 800px;
+  /* font-family: Helvetica, Arial, sans-serif; */
+  /* font-family: Times-New-Roman; */
 }
 
 #wrapper > h1 {
@@ -75,13 +77,13 @@ body {
   margin-top: 50px;
 }
 
-#content a:link,
-#content a:visited {
+a:link,
+a:visited {
   color: #03e;
   text-decoration: none;
 }
 
-#content a:hover {
+a:hover {
   text-decoration: underline;
 }
 
