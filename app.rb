@@ -7,7 +7,7 @@ Bundler.require
 require "digest/md5"
 begin
   require "./setting"
-  DB_URL = 'sqlite3:///db/blog.sqlite3'
+  DB_URL = "sqlite3://#{File.dirname(__FILE__)}/db/blog.sqlite3"
 rescue LoadError => e
   PASSWORD_DIGEST = ENV['PASSWORD_DIGEST']
   SESSION_SECRET = ENV['SESSION_SECRET']
@@ -20,7 +20,7 @@ end
 
 configure do
   set :app_file, __FILE__
-  set :database, DATABASE_URL
+  set :database, DB_URL
   disable :session
   use Rack::Session::Cookie,
     key: "rack.session",
