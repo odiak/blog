@@ -5,14 +5,22 @@ require "bundler"
 Bundler.require
 
 require "digest/md5"
-require "./setting"
+begin
+  require "./setting"
+  DB_URL = 'sqlite3:///db/blog.sqlite3'
+rescue LoadError => e
+  PASSWORD_DIGEST = ENV['PASSWORD_DIGEST']
+  SESSION_SECRET = ENV['SESSION_SECRET']
+  SESSION_EXPIRE_AFTER = ENV['SESSION_EXPIRE_AFTER'].to_i
+  DB_URL = ENV['DATABASE_URL']
+end
 
 class Post < ActiveRecord::Base
 end
 
 configure do
   set :app_file, __FILE__
-  set :database, "sqlite3:///db/blog.sqlite3"
+  set :database, DATABASE_URL
   disable :session
   use Rack::Session::Cookie,
     key: "rack.session",
